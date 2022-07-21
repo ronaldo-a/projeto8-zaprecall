@@ -10,14 +10,14 @@ export default function Questions () {
     {question: "Usamos estado (state) para __ ", answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"},
 ]
 
-    /**function shuffleDeck(deck) {
+    function shuffleDeck(deck) {
             for(var i =deck.length-1 ; i>0 ;i--){
                 var j = Math.floor( Math.random() * (i + 1) );
                 [deck[i],deck[j]]=[deck[j],deck[i]];
             }
-        }
+    }
 
-    shuffleDeck(deck1)**/
+    shuffleDeck(deck1)
 
     function Question (props) {
         return (
@@ -25,8 +25,12 @@ export default function Questions () {
         )
     }    
 
-    const questionArr = deck1.map((bolinha) => <Question question={bolinha.question} />)
-    console.log(questionArr)
+    const questionsShown = []
+    for (let i=0; i<4; i++) {
+        questionsShown.push(deck1[i])
+    }
+    
+    let questionArr = questionsShown.map((info) => <Question question={info.question} />)
 
     return (
         <div className="questions">
