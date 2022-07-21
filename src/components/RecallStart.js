@@ -1,4 +1,5 @@
 import react from "react"
+import Questions from "./Questions"
 
 export default function RecallStart() {
 
@@ -20,17 +21,17 @@ function Header() {
     )
 }
 
-function Questions() {
+/**function Questions() {
     return (
         <div className="questions">
-            <button>Pergunta 1 <ion-icon name="play-outline"></ion-icon></button>
+            <Question />
             <button>Pergunta 2 <ion-icon name="play-outline"></ion-icon></button>
             <button>Pergunta 3 <ion-icon name="play-outline"></ion-icon></button>
             <button>Pergunta 4 <ion-icon name="play-outline"></ion-icon></button>
         </div>
 
         )
-}
+}**/
 
 function Footer() {
     return (

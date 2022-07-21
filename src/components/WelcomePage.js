@@ -6,9 +6,7 @@ export default function WelcomePage({setPage, page}) {
         <div className="welcomePage" >
             <img src="./imgs/logo.png" alt="" />
             <h1>ZapRecall</h1>
-            <button onClick={() => {
-            setPage("tela2")
-            console.log(page)}}>Iniciar Recall!</button>
+            <button onClick={() => setPage("tela2")}>Iniciar Recall!</button>
         </div>
     )
 
