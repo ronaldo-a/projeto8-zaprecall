@@ -1,4 +1,8 @@
+import React from "react"
+
 export default function Questions () {
+
+    
 
     const deck1 = [{question: "O que é JSX?", answer: "Uma extensão de linguagem do JavaScript"},
     {question: "O React é _", answer: "uma biblioteca JavaScript para construção de interfaces"},
@@ -20,17 +24,29 @@ export default function Questions () {
     shuffleDeck(deck1)
 
     function Question (props) {
-        return (
-        <button>{props.question}</button>
-        )
+        const [card, setCard] = React.useState("initialFace")
+        if (card === "initialFace") {
+            return (
+                <button onClick={() => setCard("questionFace")}>Pergunta {props.index + 1}</button>
+            )
+        } else if (card === "questionFace") {
+            return (
+                <button onClick={() => setCard("answerFace")}>{props.question}</button>
+            )
+        } else {
+            return (
+                <button>{props.answer}</button>
+            )
+        }
     }    
 
+    //Para pegar apenas 4 das 8 questões de deck1
     const questionsShown = []
     for (let i=0; i<4; i++) {
         questionsShown.push(deck1[i])
     }
     
-    let questionArr = questionsShown.map((info) => <Question question={info.question} />)
+    let questionArr = questionsShown.map((info, index) => <Question question={info.question} answer={info.answer} index={index} />)
 
     return (
         <div className="questions">
