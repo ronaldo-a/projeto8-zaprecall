@@ -1,12 +1,11 @@
-import react from "react"
-import Questions from "./Questions"
+import Decks from "./Decks"
 
 export default function RecallStart() {
 
     return (
     <div className="recallStart">
         <Header />
-        <Questions />
+        <Decks />
         <Footer />
     </div>
     )
@@ -21,22 +20,10 @@ function Header() {
     )
 }
 
-/**function Questions() {
-    return (
-        <div className="questions">
-            <Question />
-            <button>Pergunta 2 <ion-icon name="play-outline"></ion-icon></button>
-            <button>Pergunta 3 <ion-icon name="play-outline"></ion-icon></button>
-            <button>Pergunta 4 <ion-icon name="play-outline"></ion-icon></button>
-        </div>
-
-        )
-}**/
-
 function Footer() {
     return (
     <div className="footer">
-        <p>0/4 concluídos</p>
+        <p>1/4 concluídos</p>
     </div>
     )
 }

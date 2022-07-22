@@ -1,19 +1,8 @@
 import React from "react"
 
-export default function Questions () {
+export default function Questions (props) {
 
-    
-
-    const deck1 = [{question: "O que é JSX?", answer: "Uma extensão de linguagem do JavaScript"},
-    {question: "O React é _", answer: "uma biblioteca JavaScript para construção de interfaces"},
-    {question: "Componentes devem iniciar com __", answer: "letra maiúscula"},
-    {question: "Podemos colocar __ dentro do JSX", answer: "expressões"},
-    {question: "O ReactDOM nos ajuda __ ", answer: "interagindo com a DOM para colocar componentes React na mesma"},
-    {question: "Usamos o npm para __ ", answer: "gerenciar os pacotes necessários e suas dependências"},
-    {question: "Usamos props para __ ", answer: "passar diferentes informações para componentes "},
-    {question: "Usamos estado (state) para __ ", answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"},
-]
-
+    //Mistura o baralho de cartas
     function shuffleDeck(deck) {
             for(var i =deck.length-1 ; i>0 ;i--){
                 var j = Math.floor( Math.random() * (i + 1) );
@@ -21,36 +10,59 @@ export default function Questions () {
             }
     }
 
-    shuffleDeck(deck1)
+    shuffleDeck(props.deck)
 
+    //Componente que define uma carta
     function Question (props) {
         const [card, setCard] = React.useState("initialFace")
+        const [result, setResult] = React.useState("")
+        const [ion, setIon] = React.useState("play-outline")
+
+        
+
         if (card === "initialFace") {
             return (
-                <button onClick={() => setCard("questionFace")}>Pergunta {props.index + 1}</button>
+                <button className={result}>
+                    <p>Pergunta {props.index + 1}</p> 
+                    <ion-icon name={ion} onClick={() => (result === "" ? setCard("questionFace") : setCard("initialFace"))}></ion-icon>
+                </button>
             )
         } else if (card === "questionFace") {
             return (
-                <button onClick={() => setCard("answerFace")}>{props.question}</button>
+                <button className="questionFace">
+                    <p>{props.question}</p>
+                    <img src="./imgs/setinha.png" alt="" onClick={() => setCard("answerFace")}/>
+                </button>
             )
         } else {
             return (
-                <button>{props.answer}</button>
+                <button className="answerFace">
+                    <p>{props.answer}</p>
+                    <div className="resultButtons">
+                    <button className="not" onClick={() => afterResult("resultRed", "close-circle")}>Não lembrei</button>
+                    <button className="almost" onClick={() => afterResult("resultYellow", "help-circle")}>Quase não lembrei</button>
+                    <button className="zap" onClick={() => afterResult("resultGreen", "checkmark-circle")}>Zap!</button>
+                    </div>
+                </button>
             )
+        }
+
+        function afterResult(result, ion) {
+            setCard("initialFace")
+            setResult(result)
+            setIon(ion)
         }
     }    
 
-    //Para pegar apenas 4 das 8 questões de deck1
+    //Para pegar apenas 4 das 8 cartas do baralho
     const questionsShown = []
     for (let i=0; i<4; i++) {
-        questionsShown.push(deck1[i])
-    }
-    
-    let questionArr = questionsShown.map((info, index) => <Question question={info.question} answer={info.answer} index={index} />)
+        questionsShown.push(props.deck[i])
+    } 
 
     return (
         <div className="questions">
-            {questionArr}
+            {questionsShown.map((info, index) => <Question question={info.question} answer={info.answer} index={index} key={index} />)}
         </div>
     )
 
