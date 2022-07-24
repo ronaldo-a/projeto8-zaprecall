@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function WelcomePage({setPage, page}) {
+export default function WelcomePage({setPage}) {
 
     return (
         <div className="welcomePage" >

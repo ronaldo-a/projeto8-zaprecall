@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Questions (selectedQuestions) {
+export default function Questions (props) {
 
     //Componente que define uma carta
     function Question (props) {
@@ -40,14 +40,25 @@ export default function Questions (selectedQuestions) {
             setCard("initialFace")
             setResult(result)
             setIon(ion)
+            props.setCardsAnswered(props.cardsAnswered + 1)
+            props.setSequence([...props.sequence, <div className={result}><ion-icon name={ion}></ion-icon></div>])
         }
+
     }    
 
-    const questions = selectedQuestions.deck
+    const questions = props.deck
 
     return (
         <div className="questions">
-            {questions.map((info, index) => <Question question={info.question} answer={info.answer} index={index} key={index} />)}
+            {questions.map((info, index) => <Question 
+            question={info.question} 
+            answer={info.answer} 
+            index={index} 
+            setCardsAnswered={props.setCardsAnswered} 
+            cardsAnswered={props.cardsAnswered} 
+            key={index}
+            sequence={props.sequence}
+            setSequence={props.setSequence} />)}
         </div>
     )
 

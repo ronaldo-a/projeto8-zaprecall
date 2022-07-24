@@ -1,14 +1,22 @@
+import React from "react"
 import Decks from "./Decks"
+import Footer from "./Footer"
 
 export default function RecallStart() {
+
+    const [cardsAnswered, setCardsAnswered] = React.useState(4)
 
     return (
     <div className="recallStart">
         <Header />
-        <Decks />
-        <Footer />
+        <Decks cardsQuestoes={cardsQuestoes} />
+        <Footer result={cardsAnswered} />
     </div>
-    )
+)
+
+    function cardsQuestoes () {
+       setCardsAnswered(cardsAnswered + 1)
+    }
 }
 
 function Header() {
@@ -20,10 +28,4 @@ function Header() {
     )
 }
 
-function Footer() {
-    return (
-    <div className="footer">
-        <p>1/4 concluídos</p>
-    </div>
-    )
-}
+

@@ -1,6 +1,7 @@
+import React from "react";
 import Questions from "./Questions"
 
-export default function Decks() {
+export default function Decks(props) {
 
     const deck1 = [{question: "O que é JSX?", answer: "Uma extensão de linguagem do JavaScript"},
     {question: "O React é _", answer: "uma biblioteca JavaScript para construção de interfaces"},
@@ -28,6 +29,10 @@ for (let i=0; i<4; i++) {
     questionsShown.push(deck1[i])
 } 
 
-return <Questions deck={questionsShown} />
-
+return <Questions 
+    deck={questionsShown} 
+    setCardsAnswered={props.setCardsAnswered} 
+    cardsAnswered={props.cardsAnswered}
+    sequence={props.sequence}
+    setSequence={props.setSequence} />
 }
