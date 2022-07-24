@@ -13,6 +13,8 @@ export default function Decks(props) {
     {question: "Usamos estado (state) para __ ", answer: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"},
 ]
 
+const [baralho, setBaralho] = React.useState("")
+
 //Embaralha deck
 function shuffleDeck(deck) {
     for(var i = deck.length-1 ; i>0 ;i--){
@@ -21,18 +23,22 @@ function shuffleDeck(deck) {
     }
 }
 
-shuffleDeck(deck1)
+if (baralho==="") {
+    shuffleDeck(deck1)
+    const questionsShown = []
+    for (let i=0; i<4; i++) {
+        questionsShown.push(deck1[i])
+    }
+    setBaralho(questionsShown) 
+}
 
 //Para pegar apenas 4 das 8 cartas do baralho
-const questionsShown = []
-for (let i=0; i<4; i++) {
-    questionsShown.push(deck1[i])
-} 
 
 return <Questions 
-    deck={questionsShown} 
+    baralho={baralho} 
     setCardsAnswered={props.setCardsAnswered} 
     cardsAnswered={props.cardsAnswered}
     sequence={props.sequence}
-    setSequence={props.setSequence} />
+    setSequence={props.setSequence} 
+    />
 }

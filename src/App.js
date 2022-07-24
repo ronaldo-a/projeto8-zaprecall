@@ -21,7 +21,12 @@ export default function App() {
         return (
         <div className="recallStart">
             <Header />
-            <Decks setCardsAnswered={setCardsAnswered} cardsAnswered={cardsAnswered} sequence={sequence} setSequence={setSequence}/>
+            <Decks 
+            setCardsAnswered={setCardsAnswered} 
+            cardsAnswered={cardsAnswered} 
+            sequence={sequence} 
+            setSequence={setSequence}
+            />
             <Footer result={cardsAnswered} sequence={sequence}/>
         </div>
         )
