@@ -10,24 +10,24 @@ import Header from "./components/Header"
 export default function App() {
 
     const [page, setPage] = React.useState("tela1") 
-    const [cardsAnswered, setCardsAnswered] = React.useState(0) 
+    const [counter, setCounter] = React.useState(0) 
     const [sequence, setSequence] = React.useState([])
 
     if (page === "tela1") {
         return (
-        <WelcomePage setPage={setPage} page={page}/>
+        <WelcomePage setPage={setPage} />
         )
     } else if (page === "tela2") {
         return (
         <div className="recallStart">
             <Header />
             <Decks 
-            setCardsAnswered={setCardsAnswered} 
-            cardsAnswered={cardsAnswered} 
+            setCounter={setCounter} 
+            counter={counter} 
             sequence={sequence} 
             setSequence={setSequence}
             />
-            <Footer result={cardsAnswered} sequence={sequence}/>
+            <Footer counter={counter} sequence={sequence}/>
         </div>
         )
     }

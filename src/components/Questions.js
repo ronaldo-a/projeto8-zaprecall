@@ -5,14 +5,14 @@ export default function Questions (props) {
     return (
         <div className="questions">{
             props.baralho.map((info, index) => <Question 
-            question={info.question} 
-            answer={info.answer} 
-            index={index} 
-            setCardsAnswered={props.setCardsAnswered} 
-            cardsAnswered={props.cardsAnswered} 
-            key={index}
-            sequence={props.sequence}
-            setSequence={props.setSequence} />)}
+                question={info.question} 
+                answer={info.answer} 
+                index={index} 
+                setCounter={props.setCounter} 
+                counter={props.counter} 
+                key={index}
+                sequence={props.sequence}
+                setSequence={props.setSequence} />)}
         </div>
     )
 }
@@ -35,7 +35,7 @@ function Question (props) {
         return (
             <button className="questionFace">
                 <p>{props.question}</p>
-                <img src="./imgs/setinha.png" alt="" onClick={() => setCard("answerFace")}/>
+                <img src="./imgs/setinha.png" alt="setinha" onClick={() => setCard("answerFace")}/>
             </button>
         )
     } else {
@@ -52,11 +52,11 @@ function Question (props) {
     }
 
     function afterResult(result, ion) {
-        setCard("initialFace")
-        setResult(result)
-        setIon(ion)
-        props.setCardsAnswered(props.cardsAnswered + 1)
-        props.setSequence([...props.sequence, <div className={result}><ion-icon name={ion}></ion-icon></div>])
+        setCard("initialFace") //Leva da face de resposta para a face inicial do card (com resultado)
+        setResult(result) //Define a cor do ícone e fonte da face inicial do card de acordo com o resultado
+        setIon(ion) //Define ion-icon da face inicial do card de acordo com resultado
+        props.setCounter(props.counter + 1) //Altera contador de respostas do Footer
+        props.setSequence([...props.sequence, <div className={result} key={props.sequence.length-1}><ion-icon name={ion}></ion-icon></div>]) //Adiciona ion-icon ao footer de acordo com resultado
     }
 
 }   
