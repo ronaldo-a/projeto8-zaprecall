@@ -1,4 +1,5 @@
 import React from "react"
+import setinha from "../imgs/setinha.png"
 
 export default function Questions (props) { 
 
@@ -35,7 +36,7 @@ function Question (props) {
         return (
             <button className="questionFace">
                 <p>{props.question}</p>
-                <img src="./imgs/setinha.png" alt="setinha" onClick={() => setCard("answerFace")}/>
+                <img src={setinha} alt="setinha" onClick={() => setCard("answerFace")}/>
             </button>
         )
     } else {
