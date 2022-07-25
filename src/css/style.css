@@ -97,7 +97,8 @@ button {
 
 .answerFace p, .questionFace p {
     font-weight: 400;
-    margin-bottom: auto;
+    margin-bottom: 40px;
+    text-align: left;
 }
 
 ion-icon {
@@ -194,7 +195,7 @@ button.questionFace, button.answerFace {
     justify-content: space-between;
 
     position: absolute;
-    bottom: -10px;
+    bottom: -18px;
     left: 12px;
 }
 
